@@ -9,10 +9,11 @@ import { useContext, useEffect, useState } from "react";
 import { Button } from "flowbite-react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import GoogleLogin from "./GoogleLogin";
 
 const Login = () => {
-    const navigate = useNavigate()
-    const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
   const [disabled, setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
 
@@ -45,7 +46,7 @@ const Login = () => {
         icon: "success",
         title: `${user?.displayName} is Logged in successfully!`,
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       });
       navigate(location?.state ? location.state : "/");
     });
@@ -113,6 +114,7 @@ const Login = () => {
           >
             Login
           </Button>
+          <GoogleLogin></GoogleLogin>
         </form>
       </div>
     </div>

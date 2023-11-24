@@ -13,7 +13,7 @@ const Navigation = () => {
   };
   return (
     <div>
-      <Navbar fluid rounded className="bg-red-200 py-5">
+      <Navbar fluid className="bg-black text-white  py-5">
         <Navbar.Brand href="">
           <img src={logo} className="mr-3 h-6 sm:h-9" alt=" Logo" />
           <span className="self-center  whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -57,7 +57,7 @@ const Navigation = () => {
               </Navbar.Link>
             </>
           )}
-          {/* <Navbar.Toggle /> */}
+          <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
           <Navbar.Link>
@@ -82,6 +82,13 @@ const Navigation = () => {
           <Navbar.Link>
             <NavLink to="/">Premium Articles</NavLink>
           </Navbar.Link>
+          {/* <NavLink to="/">Home</NavLink>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">Home</NavLink> */}
         </Navbar.Collapse>
       </Navbar>
     </div>

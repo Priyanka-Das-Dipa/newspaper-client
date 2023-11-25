@@ -42,7 +42,7 @@ const Navigation = () => {
                   <NavLink to="/">Profile</NavLink>
                 </Dropdown.Item>
                 <Dropdown.Item>
-                  <NavLink to="/">Dashboard</NavLink>
+                  <NavLink >Dashboard</NavLink>
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item>
@@ -74,7 +74,7 @@ const Navigation = () => {
             <NavLink to="/">Subscription</NavLink>
           </Navbar.Link>
           <Navbar.Link>
-            <NavLink to="/">Dashboard</NavLink>
+            <NavLink to="dashboard">Dashboard</NavLink>
           </Navbar.Link>
           <Navbar.Link>
             <NavLink to="/">My Articles</NavLink>

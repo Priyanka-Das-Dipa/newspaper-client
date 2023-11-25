@@ -42,7 +42,7 @@ const Slider = () => {
             <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
 
             <div className="absolute space-y-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
-                <h1 className="text-2xl ">All Trending News  </h1>
+              <h1 className="text-2xl ">All Trending News </h1>
               <h2 className="text-3xl font-bold">{item.topic}</h2>
               <p className="text-md">{item.description}</p>
             </div>

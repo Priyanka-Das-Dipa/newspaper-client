@@ -3,7 +3,7 @@ import AdminHome from "./AdminHome";
 
 const DashBoard = () => {
     return (
-        <div>
+        <div className="">
             <AdminHome></AdminHome>
         </div>
     );

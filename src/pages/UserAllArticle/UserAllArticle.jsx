@@ -1,6 +1,7 @@
 import { Button } from "flowbite-react";
 import useArticles from "../../hooks/useArticles";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const UserAllArticle = () => {
   const [articles, loading] = useArticles([]);
@@ -93,9 +94,11 @@ const UserAllArticle = () => {
                 </div>
                 <p className="text-blue-600">{item.tags}</p>
 
-                <div className="flex justify-end">
-                  <Button className="w-1/3 ">View Details</Button>
-                </div>
+                <Link to={`/userAllArticle/${item._id}`}>
+                  <div className="flex justify-end">
+                    <Button className="w-1/3 ">View Details</Button>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

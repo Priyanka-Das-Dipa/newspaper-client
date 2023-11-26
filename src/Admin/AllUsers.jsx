@@ -44,7 +44,7 @@ const AllUsers = () => {
                 <td className="px-6 py-4">priyankadipa@gmail.com</td>
 
                 <td className="px-6 py-4">
-                  <Button className="btn"> Admin</Button>
+                  <Button className="btn">Make Admin</Button>
                 </td>
               </tr>
             </tbody>

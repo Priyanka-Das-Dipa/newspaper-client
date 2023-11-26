@@ -68,7 +68,7 @@ const Navigation = () => {
             <NavLink to="/addArticle">Add Articles</NavLink>
           </Navbar.Link>
           <Navbar.Link>
-            <NavLink to="/">All Articles</NavLink>
+            <NavLink to="/userAllArticle">All Articles</NavLink>
           </Navbar.Link>
           <Navbar.Link>
             <NavLink to="/">Subscription</NavLink>

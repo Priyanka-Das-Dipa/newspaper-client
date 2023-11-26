@@ -9,6 +9,7 @@ import AddArticles from "../pages/AddArticle/AddArticles";
 import AllArticle from "../Admin/AllArticle";
 import AllUsers from "../Admin/AllUsers";
 import AddPublishers from "../Admin/AddPublishers";
+import UserAllArticle from "../pages/UserAllArticle/UserAllArticle";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
         path: "addArticle",
         element: <AddArticles></AddArticles>,
       },
+      {
+        path: "userAllArticle",
+        element: <UserAllArticle></UserAllArticle>,
+      },
     ],
   },
   {
@@ -40,16 +45,16 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "allArticle",
-        element: <AllArticle></AllArticle>
+        element: <AllArticle></AllArticle>,
       },
       {
         path: "allUsers",
-        element: <AllUsers></AllUsers>
+        element: <AllUsers></AllUsers>,
       },
       {
         path: "addPublisher",
-        element: <AddPublishers></AddPublishers>
-      }
-    ]
+        element: <AddPublishers></AddPublishers>,
+      },
+    ],
   },
 ]);

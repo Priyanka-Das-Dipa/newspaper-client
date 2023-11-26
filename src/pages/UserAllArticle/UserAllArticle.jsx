@@ -1,7 +1,7 @@
-const AllArticle = () => {
+const UserAllArticle = () => {
   return (
-    <div>
-      all Articles
+    <div className="min-h-screen">
+      <div className="py-10">
       <div
         href="#"
         className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -21,8 +21,9 @@ const AllArticle = () => {
           </p>
         </div>
       </div>
+      </div>
     </div>
   );
 };
 
-export default AllArticle;
+export default UserAllArticle;

@@ -5,9 +5,11 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 import GoogleLogin from "./GoogleLogin";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 const Register = () => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -15,6 +17,7 @@ const Register = () => {
   const { createUser, user, handleUpdateProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosPublic = useAxiosPublic();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -23,12 +26,21 @@ const Register = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
         handleUpdateProfile(data.first_name, data.img).then(() => {
-          Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: `${user?.displayName} is Logged in successfully!`,
-            showConfirmButton: false,
-            timer: 1500,
+          const userInfo = {
+            name: data.first_name,
+            email: data.email,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              reset();
+              Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: `${user?.displayName} is Logged in successfully!`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
           });
           navigate(location?.state ? location.state : "/");
         });

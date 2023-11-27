@@ -1,17 +1,35 @@
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "flowbite-react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
 
-  const {data : users = [] } = useQuery({
-    queryKey: ['users'],
-    queryFn: async () =>{
-      const res = await axiosSecure.get('/users');
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
       return res.data;
-    }
-  })
+    },
+  });
+
+  const handleMakeUser = (user) => {
+    axiosSecure.patch(`/users/${user._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch()
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${user.name} is admin now`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <h2 className="text-3xl font-semibold my-5 text-center text-red-400">
@@ -23,6 +41,9 @@ const AllUsers = () => {
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" className="px-6 py-3">
+                  #
+                </th>
+                <th scope="col" className="px-6 py-3">
                   Profile Picture
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -33,31 +54,46 @@ const AllUsers = () => {
                 </th>
 
                 <th scope="col" className="px-6 py-3">
-                  Action
+                  Role
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th
-                  scope="row"
-                  className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+              {users.map((user, index) => (
+                <tr
+                  key={user._id}
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                 >
-                  <img
-                    className="w-10 h-10 rounded-full"
-                    src="/docs/images/people/profile-picture-1.jpg"
-                    alt=""
-                  />
-                </th>
+                  <td className="px-6 py-4">{index + 1}</td>
+                  <th
+                    scope="row"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src={user?.photoURL}
+                      alt=""
+                    />
+                  </th>
 
-                <td className="px-6 py-4">Priyanka Das Dipa</td>
+                  <td className="px-6 py-4">{user.displayName}</td>
 
-                <td className="px-6 py-4">priyankadipa@gmail.com</td>
+                  <td className="px-6 py-4">{user.email}</td>
 
-                <td className="px-6 py-4">
-                  <Button className="btn">Make Admin</Button>
-                </td>
-              </tr>
+                  <td className="px-6 py-4">
+                    {user.role === "admin" ? (
+                      "Admin"
+                    ) : (
+                      <Button
+                        onClick={() => handleMakeUser(user)}
+                        className="btn"
+                      >
+                        Make Admin
+                      </Button>
+                    )}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

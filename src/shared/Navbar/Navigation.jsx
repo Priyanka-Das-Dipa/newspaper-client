@@ -3,6 +3,7 @@ import logo from "../../../public/images/logo.png";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navigation = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const Navigation = () => {
       .catch((error) => console.log(error));
   };
 
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div>
       <Navbar fluid className="bg-black text-white  py-5">

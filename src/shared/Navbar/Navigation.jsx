@@ -11,6 +11,8 @@ const Navigation = () => {
       .then(() => {})
       .catch((error) => console.log(error));
   };
+
+  const isAdmin = true;
   return (
     <div>
       <Navbar fluid className="bg-black text-white  py-5">
@@ -73,9 +75,13 @@ const Navigation = () => {
           <Navbar.Link>
             <NavLink to="/">Subscription</NavLink>
           </Navbar.Link>
-          <Navbar.Link>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-          </Navbar.Link>
+          {isAdmin ? (
+            <Navbar.Link>
+              <NavLink to="/dashboard">Dashboard</NavLink>
+            </Navbar.Link>
+          ) : (
+            ""
+          )}
           <Navbar.Link>
             <NavLink to="/">My Articles</NavLink>
           </Navbar.Link>

@@ -1,6 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "flowbite-react";
 
 const AllUsers = () => {
+  const {data } = useQuery({
+    queryKey: ['users'],
+    queryFn: async () =>{
+      
+    }
+  })
   return (
     <div>
       <h2 className="text-3xl font-semibold my-5 text-center text-red-400">

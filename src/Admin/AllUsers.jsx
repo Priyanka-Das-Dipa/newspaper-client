@@ -1,17 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "flowbite-react";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AllUsers = () => {
-  const {data } = useQuery({
+  const axiosSecure = useAxiosSecure();
+
+  const {data : users = [] } = useQuery({
     queryKey: ['users'],
     queryFn: async () =>{
-      
+      const res = await axiosSecure.get('/users');
+      return res.data;
     }
   })
   return (
     <div>
       <h2 className="text-3xl font-semibold my-5 text-center text-red-400">
-        All Users
+        All Users {users.length}
       </h2>
       <div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

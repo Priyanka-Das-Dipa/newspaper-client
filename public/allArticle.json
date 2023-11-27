@@ -6,7 +6,8 @@
     "published_date": "2023-10-2",
     "status": "free",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel odio quis neque sodales malesuada. Fusce consequat mi sit amet felis cursus, in hendrerit neque aliquet. Nullam eu tristique eros. Curabitur tincidunt auctor nisl, eu finibus neque volutpat in. Phasellus auctor risus non efficitur varius. In hac habitasse platea dictumst. Nunc congue augue vel risus dapibus, nec dapibus dolor malesuada.",
-    "tags": ["#liveMatch", "#Football", "#GoodMatch"]
+    "tags": ["#liveMatch", "#Football", "#GoodMatch"],
+    "category" : "Football"
   },
   {
     "article_title": "FIFA WORLD CUP 2023",
@@ -15,6 +16,7 @@
     "published_date": "2023-10-2",
     "status": "free",
     "description": "Praesent vehicula velit vitae malesuada fermentum. Nulla facilisi. Vivamus condimentum, elit at sagittis dictum, ex lacus iaculis lacus, vel ullamcorper arcu odio et nisl. Suspendisse potenti. Vestibulum facilisis feugiat justo, vel fringilla ligula aliquet vel. Sed imperdiet arcu vel dolor pharetra, ut bibendum lacus imperdiet.",
-    "tags": ["#liveMatch", "#Football", "#GoodMatch"]
+    "tags": ["#liveMatch", "#Football", "#GoodMatch"],
+    "category" : "Football"
   }
 ]

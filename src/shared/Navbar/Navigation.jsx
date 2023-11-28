@@ -89,13 +89,7 @@ const Navigation = () => {
           <Navbar.Link>
             <NavLink to="/">Premium Articles</NavLink>
           </Navbar.Link>
-          {/* <NavLink to="/">Home</NavLink>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/">Home</NavLink> */}
+          
         </Navbar.Collapse>
       </Navbar>
     </div>

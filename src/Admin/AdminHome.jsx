@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUser, FaUsers } from "react-icons/fa";
 import { PiArticle, PiArticleFill, PiSubtractBold } from "react-icons/pi";
 
 const AdminHome = () => {
@@ -9,16 +9,36 @@ const AdminHome = () => {
         <>
           <ul className="menu my-5 mb-10 text-xl font-semibold space-y-4 ">
             <li className="hover:underline">
-              <NavLink to="/dashboard">Admin Home</NavLink>
+              <NavLink to="/dashboard" className="flex items-center gap-2">
+                <FaHome></FaHome> Admin Home
+              </NavLink>
             </li>
             <li className="hover:underline">
-              <NavLink to="/dashboard/allArticle">All Article</NavLink>
+              <NavLink
+                to="/dashboard/allArticle"
+                className="flex items-center gap-2"
+              >
+                <PiArticle></PiArticle>
+                All Article
+              </NavLink>
             </li>
             <li className="hover:underline">
-              <NavLink to="/dashboard/allUsers">All Users</NavLink>
+              <NavLink
+                to="/dashboard/allUsers"
+                className="flex items-center gap-2"
+              >
+                <FaUsers></FaUsers>
+                All Users
+              </NavLink>
             </li>
             <li className="hover:underline">
-              <NavLink to="/dashboard/addPublisher">Add Publishers</NavLink>
+              <NavLink
+                to="/dashboard/addPublisher"
+                className="flex items-center gap-2"
+              >
+                <FaUser></FaUser>
+                Add Publishers
+              </NavLink>
             </li>
           </ul>
 

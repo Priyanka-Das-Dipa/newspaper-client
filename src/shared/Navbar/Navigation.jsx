@@ -66,7 +66,6 @@ const Navigation = () => {
           <Navbar.Link>
             <NavLink to="/">Home</NavLink>
           </Navbar.Link>
-
           <Navbar.Link>
             <NavLink to="/addArticle">Add Articles</NavLink>
           </Navbar.Link>
@@ -89,7 +88,6 @@ const Navigation = () => {
           <Navbar.Link>
             <NavLink to="/">Premium Articles</NavLink>
           </Navbar.Link>
-          
         </Navbar.Collapse>
       </Navbar>
     </div>

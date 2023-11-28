@@ -33,7 +33,9 @@ const AddArticles = () => {
         category: data.category,
         description: data.description,
         publisher_name: data.publisher_name,
+        publisher_date: data.publisher_date,
         tags: data.tags,
+        selectTags : data.selectTags,
         image: res.data.data.display_url,
       };
       const addRes = await axiosSecure.post("/allArticles", addItem);

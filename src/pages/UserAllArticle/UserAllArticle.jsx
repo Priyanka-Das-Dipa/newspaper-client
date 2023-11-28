@@ -8,7 +8,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 const UserAllArticle = () => {
   const [articles, loading] = useArticles([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   if (loading) {
     return <p>Loading</p>;
@@ -17,7 +17,6 @@ const UserAllArticle = () => {
     const searchRegex = new RegExp(searchTerm, "i");
     return (
       searchRegex.test(item.article_title) ||
-      item.tags.some((tag) => searchRegex.test(tag)) ||
       searchRegex.test(item.publisher_name)
     );
   });
@@ -87,17 +86,23 @@ const UserAllArticle = () => {
                 </p>
 
                 <div className="flex items-center gap-4">
-                  <img className="w-10 h-10 rounded-full" src={user.photoUrl} alt="" />
+                  <img
+                    className="w-10 h-10 rounded-full"
+                    src={user.photoUrl}
+                    alt=""
+                  />
                   <div className="font-medium dark:text-white">
                     <div>{item.publisher_name}</div>
                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                      {item.published_date}
+                      {item.publisher_date}
                     </div>
                   </div>
                 </div>
                 <div className="flex justify-evenly gap-2">
-                <p className="text-blue-600">{item.tags}</p>
-                <p className="text-black uppercase font-semibold">{item.category}</p>
+                  <p className="text-blue-600">{item.tags}</p>
+                  <p className="text-black uppercase font-semibold">
+                    {item.category}
+                  </p>
                 </div>
 
                 <Link to={`/userAllArticle/${item._id}`}>

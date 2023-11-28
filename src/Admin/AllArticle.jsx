@@ -34,7 +34,7 @@ const AllArticle = () => {
                   <div className="font-medium dark:text-white">
                     <div>{item.publisher_name}</div>
                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                      {item.published_date}
+                     Date of Publication: {item.publisher_date}
                     </div>
                   </div>
                 </div>

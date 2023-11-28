@@ -29,6 +29,20 @@ const AllArticle = () => {
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   {item.description}
                 </p>
+                <div className="flex items-center gap-4">
+                  <img className="w-10 h-10 rounded-full" src="" alt="" />
+                  <div className="font-medium dark:text-white">
+                    <div>{item.publisher_name}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                      {item.published_date}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex gap-16 mb-5">
+                <p className="text-blue-600">{item.tags}</p>
+                <p className="text-black uppercase font-semibold">{item.category}</p>
+                {/* <p className="text-black uppercase font-semibold">{item.date}</p> */}
+                </div>
                 <div className="flex gap-2">
                   <Button className="btn btn-sm">Approve</Button>
                   <Button>Decline</Button>

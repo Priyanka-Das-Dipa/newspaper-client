@@ -2,10 +2,13 @@ import { Button } from "flowbite-react";
 import useArticles from "../../hooks/useArticles";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const UserAllArticle = () => {
   const [articles, loading] = useArticles([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const {user} = useContext(AuthContext);
 
   if (loading) {
     return <p>Loading</p>;
@@ -63,7 +66,7 @@ const UserAllArticle = () => {
           </div>
         </form>
       </div>
-      <div className="min-h-screen my-5 space-y-5  flex justify-between">
+      <div className="min-h-screen my-5 space-y-5 grid grid-cols-2 ">
         {filteredArticles.map((item) => (
           <div key={item._id} className="space-y-1 ">
             <div
@@ -84,7 +87,7 @@ const UserAllArticle = () => {
                 </p>
 
                 <div className="flex items-center gap-4">
-                  <img className="w-10 h-10 rounded-full" src="" alt="" />
+                  <img className="w-10 h-10 rounded-full" src={user.photoUrl} alt="" />
                   <div className="font-medium dark:text-white">
                     <div>{item.publisher_name}</div>
                     <div className="text-sm text-gray-500 dark:text-gray-400">
@@ -92,7 +95,10 @@ const UserAllArticle = () => {
                     </div>
                   </div>
                 </div>
+                <div className="flex justify-evenly gap-2">
                 <p className="text-blue-600">{item.tags}</p>
+                <p className="text-black uppercase font-semibold">{item.category}</p>
+                </div>
 
                 <Link to={`/userAllArticle/${item._id}`}>
                   <div className="flex justify-end">

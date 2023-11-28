@@ -28,7 +28,7 @@ const AddPublishers = () => {
         tags: data.tags,
         image: res.data.data.display_url,
       };
-      const addRes = await axiosSecure.post("/allArticles", addItem);
+      const addRes = await axiosSecure.post("/publisher", addItem);
       console.log(addRes.data);
       if (addRes.data.insertedId) {
         reset();

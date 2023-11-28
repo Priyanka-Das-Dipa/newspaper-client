@@ -13,7 +13,9 @@ const usePublisher = () => {
             setPublisher(data);
             setLoading(false);
         })
-    }, [publisher, loading])
+    }, [])
+
+    return[publisher, loading]
 };
 
 export default usePublisher;

@@ -2,47 +2,54 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-
-
+import Select from "react-select";
+import { useState } from "react";
 
 const image_hosting_key = import.meta.env.VITE_IMG_BB;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
+const options = [
+  { value: "#liveMatch", label: "liveMatch" },
+  { value: "#GoodMatch", label: "GoodMatch" },
+  { value: "#FIFAWorldCup", label: "FIFAWorldCup" },
+];
 const AddArticles = () => {
   const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const onSubmit = async (data) => {
     console.log(data);
-    const imageFile = {image : data.image[0]}
+    const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
-        'content-type' : 'multipart/form-data'
-      }
+        "content-type": "multipart/form-data",
+      },
     });
-    if(res.data.success){
+    if (res.data.success) {
       const addItem = {
-        article_title : data.article_title,
-        category : data.category,
+        article_title: data.article_title,
+        category: data.category,
         description: data.description,
-        publisher_name : data.publisher_name,
-        tags : data.tags,
-        image: res.data.data.display_url
-      }
-      const addRes = await axiosSecure.post('/allArticles', addItem);
-      console.log(addRes.data)
-      if(addRes.data.insertedId){
+        publisher_name: data.publisher_name,
+        tags: data.tags,
+        image: res.data.data.display_url,
+      };
+      const addRes = await axiosSecure.post("/allArticles", addItem);
+      console.log(addRes.data);
+      if (addRes.data.insertedId) {
         reset();
         Swal.fire({
           position: "top-end",
           icon: "success",
           title: "Your work has been saved",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
       }
     }
-    console.log('with image url',res.data)
+    console.log("with image url", res.data);
   };
 
   return (
@@ -95,6 +102,21 @@ const AddArticles = () => {
                 required
               />
             </div>
+            {/* <div>
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Tags
+              </label>
+              <Select
+                {...register("selectTags", { required: true })}
+                name="selectTags"
+                defaultValue={selectedOption}
+                onChange={setSelectedOption}
+                options={options}
+                isMulti
+                isSearchable
+                noOptionsMessage={() => 'Not found'}
+              />
+            </div> */}
 
             <div className="">
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -144,8 +166,8 @@ const AddArticles = () => {
               Description
             </label>
             <textarea
-            {...register("description", { required: true })}
-            name="description"
+              {...register("description", { required: true })}
+              name="description"
               id="message"
               rows="4"
               className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

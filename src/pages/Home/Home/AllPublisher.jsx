@@ -7,11 +7,11 @@ const AllPublisher = () => {
     return <p>Loading</p>;
   }
   return (
-    <div className="my-10">
-      <h2 className="text-4xl font-semibold text-center text-balck mb-5">
+    <div className="my-10 min-h-screen">
+      <h2 className="text-4xl mb-10 font-semibold text-center text-balck ">
         All Our Publisher
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {publisher.map((person) => (
           <div
             key={person._id}

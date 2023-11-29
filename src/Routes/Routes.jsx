@@ -11,6 +11,8 @@ import AllUsers from "../Admin/AllUsers";
 import AddPublishers from "../Admin/AddPublishers";
 import UserAllArticle from "../pages/UserAllArticle/UserAllArticle";
 import DetailsPage from "../pages/UserAllArticle/DetailsPage";
+import MyArticles from "../pages/MyArticles/MyArticles";
+import DashDesign from "../Admin/DashDesign";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "userAllArticle/:id",
         element : <DetailsPage></DetailsPage>,
+      },
+      {
+        path: "myArticle",
+        element: <MyArticles></MyArticles>
       }
     ],
   },
@@ -48,6 +54,10 @@ export const router = createBrowserRouter([
     path: "dashboard",
     element: <DashBoard></DashBoard>,
     children: [
+      {
+        path: "adminHome",
+        element: <DashDesign></DashDesign>
+      },
       {
         path: "allArticle",
         element: <AllArticle></AllArticle>,

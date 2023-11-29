@@ -83,7 +83,7 @@ const Navigation = () => {
             ""
           )}
           <Navbar.Link>
-            <NavLink to="/">My Articles</NavLink>
+            <NavLink to="/myArticle">My Articles</NavLink>
           </Navbar.Link>
           <Navbar.Link>
             <NavLink to="/">Premium Articles</NavLink>

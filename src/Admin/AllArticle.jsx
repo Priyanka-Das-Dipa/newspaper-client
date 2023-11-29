@@ -1,13 +1,50 @@
 import { Button } from "flowbite-react";
-import useArticles from "../hooks/useArticles";
+import { useContext, useState } from "react";
+import { useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const AllArticle = () => {
-  const [articles, loading] = useArticles([]);
+  // const [articles, loading] = useArticles([]);
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(0);
+  const { count } = useLoaderData();
+  const {user} = useContext(AuthContext)
   console.log(articles);
 
+  const numOfPage = Math.ceil(count / itemsPerPage);
+  const pages = [...Array(numOfPage).keys()];
+  useEffect(() => {
+    const api = `http://localhost:5000/allArticles?page=${currentPage}&size=${itemsPerPage}`;
+    fetch(api)
+      .then((res) => res.json())
+      .then((data) => {
+        setArticles(data);
+        setLoading(false);
+      });
+  }, [currentPage, itemsPerPage]);
   if (loading) {
     return <p>Loading</p>;
   }
+  const handleItemsPerPage = (e) => {
+    const val = parseInt(e.target.value);
+    setItemsPerPage(val);
+    setCurrentPage(0);
+    console.log(val);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handleNextPage = () => {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
   return (
     <div>
       <h2 className="text-4xl font-semibold text-center text-red-400 mb-5">
@@ -18,7 +55,11 @@ const AllArticle = () => {
           <div key={item._id}>
             <div className="max-w-2xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <a href="#">
-                <img className="rounded-t-lg w-full h-64" src={item.image} alt="" />
+                <img
+                  className="rounded-t-lg w-full h-64"
+                  src={item.image}
+                  alt=""
+                />
               </a>
               <div className="p-5">
                 <a href="#">
@@ -30,18 +71,20 @@ const AllArticle = () => {
                   {item.description}
                 </p>
                 <div className="flex items-center gap-4">
-                  <img className="w-10 h-10 rounded-full" src="" alt="" />
+                  <img className="w-10 h-10 rounded-full" src={user?.photoURL} alt="" />
                   <div className="font-medium dark:text-white">
                     <div>{item.publisher_name}</div>
                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                     Date of Publication: {item.publisher_date}
+                      Date of Publication: {item.publisher_date}
                     </div>
                   </div>
                 </div>
                 <div className="flex gap-16 mb-5">
-                <p className="text-blue-600">{item.tags}</p>
-                <p className="text-black uppercase font-semibold">{item.category}</p>
-                {/* <p className="text-black uppercase font-semibold">{item.date}</p> */}
+                  <p className="text-blue-600">{item.tags}</p>
+                  <p className="text-black uppercase font-semibold">
+                    {item.category}
+                  </p>
+                  {/* <p className="text-black uppercase font-semibold">{item.date}</p> */}
                 </div>
                 <div className="flex gap-2">
                   <Button className="btn btn-sm">Approve</Button>
@@ -54,7 +97,24 @@ const AllArticle = () => {
           </div>
         ))}
       </div>
-      
+      <div className="flex justify-center items-center mb-5 gap-2">
+        <Button onClick={handlePrevPage}>Prev</Button>
+        {pages.map((page, index) => (
+          <Button
+            className={currentPage === page && "bg-red-500"}
+            onClick={() => setCurrentPage(page)}
+            key={index}
+          >
+            {page}
+          </Button>
+        ))}
+        <Button onClick={handleNextPage}>Next</Button>
+        <select value={itemsPerPage} onChange={handleItemsPerPage}>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+      </div>
     </div>
   );
 };

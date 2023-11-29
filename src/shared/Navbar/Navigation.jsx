@@ -74,7 +74,7 @@ const Navigation = () => {
             <NavLink to="/userAllArticle">All Articles</NavLink>
           </Navbar.Link>
           <Navbar.Link>
-            <NavLink to="/">Subscription</NavLink>
+            <NavLink to="/subscription">Subscription</NavLink>
           </Navbar.Link>
           {isAdmin ? (
             <Navbar.Link>

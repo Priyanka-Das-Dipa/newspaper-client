@@ -14,6 +14,8 @@ import DetailsPage from "../pages/UserAllArticle/DetailsPage";
 import MyArticles from "../pages/MyArticles/MyArticles";
 import DashDesign from "../Admin/DashDesign";
 import UserProfile from "../pages/Home/UserProfile/UserProfile";
+import Subscription from "../pages/Subscription/Subscription";
+import Payment from "../pages/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +47,14 @@ export const router = createBrowserRouter([
       {
         path: "userAllArticle/:id",
         element : <DetailsPage></DetailsPage>,
+      },
+      {
+        path: "subscription",
+        element: <Subscription></Subscription>
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>
       },
       {
         path: "myArticle",

@@ -4,6 +4,8 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaUserAlt, FaUsers } from "react-icons/fa";
 import { PiArticleMediumBold } from "react-icons/pi";
+import PieChart from "./PieChart";
+
 
 const DashDesign = () => {
   const axiosSecure = useAxiosSecure();
@@ -32,7 +34,6 @@ const DashDesign = () => {
             viewBox="0 0 20 20"
           >
             <FaUsers></FaUsers>
-           
           </svg>
           <a href="#">
             <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -40,9 +41,8 @@ const DashDesign = () => {
             </h5>
           </a>
           <p className="mb-3 font-bold text-3xl text-black dark:text-gray-400">
-           {stats.users}
+            {stats?.users}
           </p>
-          
         </div>
         <div className="max-w-sm p-6 bg-red-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
@@ -53,7 +53,6 @@ const DashDesign = () => {
             viewBox="0 0 20 20"
           >
             <PiArticleMediumBold></PiArticleMediumBold>
-           
           </svg>
           <a href="#">
             <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -61,9 +60,8 @@ const DashDesign = () => {
             </h5>
           </a>
           <p className="mb-3  text-3xl font-bold text-black dark:text-gray-400">
-           {stats.articles}
+            {stats?.articles}
           </p>
-          
         </div>
         <div className="max-w-sm p-6 bg-red-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <svg
@@ -74,7 +72,6 @@ const DashDesign = () => {
             viewBox="0 0 20 20"
           >
             <FaUserAlt></FaUserAlt>
-           
           </svg>
           <a href="#">
             <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -82,13 +79,12 @@ const DashDesign = () => {
             </h5>
           </a>
           <p className="mb-3 font-normal text-3xl text-black dark:text-gray-400">
-           {stats.totalPublisher}
+            {stats?.totalPublisher}
           </p>
-          
         </div>
-        <div>
-
-        </div>
+      </div>
+      <div>
+        <PieChart></PieChart>
       </div>
     </div>
   );

@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unSubScribe();
     };
-  }, []);
+  }, [axiosPublic]);
 
   const handleUpdateProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
@@ -78,6 +78,7 @@ const AuthProvider = ({ children }) => {
     handleUpdateProfile,
     googleLogin,
   };
+  console.log(user);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

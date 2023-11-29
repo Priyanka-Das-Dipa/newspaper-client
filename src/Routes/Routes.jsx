@@ -13,6 +13,7 @@ import UserAllArticle from "../pages/UserAllArticle/UserAllArticle";
 import DetailsPage from "../pages/UserAllArticle/DetailsPage";
 import MyArticles from "../pages/MyArticles/MyArticles";
 import DashDesign from "../Admin/DashDesign";
+import UserProfile from "../pages/Home/UserProfile/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "myArticle",
         element: <MyArticles></MyArticles>
+      },
+      {
+        path: "userProfile",
+        element: <UserProfile></UserProfile>
       }
     ],
   },

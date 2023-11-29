@@ -1,6 +1,6 @@
-import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import logo from "../../../public/images/logo.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import useAdmin from "../../hooks/useAdmin";
@@ -17,7 +17,7 @@ const Navigation = () => {
   const [isAdmin] = useAdmin();
   return (
     <div>
-      <Navbar fluid className="bg-black text-white  py-5">
+      <Navbar fluid className="bg-slate-300 text-black   py-5">
         <Navbar.Brand href="">
           <img src={logo} className="mr-3 h-6 sm:h-9" alt=" Logo" />
           <span className="self-center  whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -43,14 +43,14 @@ const Navigation = () => {
                   </span>
                 </Dropdown.Header>
                 <Dropdown.Item>
-                  <NavLink to="/">Profile</NavLink>
+                  <NavLink to="/userProfile">Profile</NavLink>
                 </Dropdown.Item>
                 <Dropdown.Item>
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item>
-                  <Button onClick={handleLogOut}>Sign out</Button>
+                  <Link onClick={handleLogOut}>Sign out</Link>
                 </Dropdown.Item>
               </Dropdown>
             </>

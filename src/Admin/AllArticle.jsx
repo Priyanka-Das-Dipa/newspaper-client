@@ -54,6 +54,7 @@ const AllArticle = () => {
           </div>
         ))}
       </div>
+      
     </div>
   );
 };

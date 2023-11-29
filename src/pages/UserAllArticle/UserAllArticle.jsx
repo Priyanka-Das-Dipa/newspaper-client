@@ -1,12 +1,13 @@
 import { Button } from "flowbite-react";
-import useArticles from "../../hooks/useArticles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const UserAllArticle = () => {
-  const [articles, loading] = useArticles([]);
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  // const [articles, loading] = useArticles([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(0);
@@ -15,6 +16,16 @@ const UserAllArticle = () => {
 
   const numOfPage = Math.ceil(count / itemsPerPage);
   const pages = [...Array(numOfPage).keys()];
+
+  useEffect(() => {
+    const api = `http://localhost:5000/allArticles?page=${currentPage}&size=${itemsPerPage}`;
+    fetch(api)
+      .then((res) => res.json())
+      .then((data) => {
+        setArticles(data);
+        setLoading(false);
+      });
+  }, [currentPage, itemsPerPage]);
 
   if (loading) {
     return <p>Loading</p>;
@@ -26,9 +37,6 @@ const UserAllArticle = () => {
       searchRegex.test(item.publisher_name)
     );
   });
-
-
-  
 
   const handleItemsPerPage = (e) => {
     const val = parseInt(e.target.value);

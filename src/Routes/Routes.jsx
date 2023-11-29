@@ -40,6 +40,7 @@ export const router = createBrowserRouter([
       {
         path: "userAllArticle",
         element: <UserAllArticle></UserAllArticle>,
+        loader : () => fetch('http://localhost:5000/articleCount')
       },
       {
         path: "userAllArticle/:id",

@@ -1,16 +1,20 @@
 import { Button } from "flowbite-react";
 import useArticles from "../../hooks/useArticles";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const UserAllArticle = () => {
   const [articles, loading] = useArticles([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(0);
   const { user } = useContext(AuthContext);
+  const { count } = useLoaderData();
 
-  console.log(user);
+  const numOfPage = Math.ceil(count / itemsPerPage);
+  const pages = [...Array(numOfPage).keys()];
 
   if (loading) {
     return <p>Loading</p>;
@@ -22,6 +26,27 @@ const UserAllArticle = () => {
       searchRegex.test(item.publisher_name)
     );
   });
+
+
+  
+
+  const handleItemsPerPage = (e) => {
+    const val = parseInt(e.target.value);
+    setItemsPerPage(val);
+    setCurrentPage(0);
+    console.log(val);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handleNextPage = () => {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <>
@@ -116,6 +141,24 @@ const UserAllArticle = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="flex justify-center items-center mb-5 gap-2">
+        <Button onClick={handlePrevPage}>Prev</Button>
+        {pages.map((page, index) => (
+          <Button
+            className={currentPage === page && "bg-red-500"}
+            onClick={() => setCurrentPage(page)}
+            key={index}
+          >
+            {page}
+          </Button>
+        ))}
+        <Button onClick={handleNextPage}>Next</Button>
+        <select value={itemsPerPage} onChange={handleItemsPerPage}>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
       </div>
     </>
   );

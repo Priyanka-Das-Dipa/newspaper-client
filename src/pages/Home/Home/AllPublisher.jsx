@@ -7,7 +7,7 @@ const AllPublisher = () => {
     return <p>Loading</p>;
   }
   return (
-    <div className="my-10 min-h-screen">
+    <div className="my-10 ">
       <h2 className="text-4xl mb-10 font-semibold text-center text-balck ">
         All Our Publisher
       </h2>

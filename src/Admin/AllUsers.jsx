@@ -35,7 +35,7 @@ const AllUsers = () => {
     });
     console.log(user);
   };
-
+  console.log(users);
   return (
     <div>
       <h2 className="text-3xl font-semibold my-5 text-center text-red-400">
@@ -82,7 +82,7 @@ const AllUsers = () => {
                     />
                   </th>
 
-                  <td className="px-6 py-4">{user.displayName}</td>
+                  <td className="px-6 py-4">{user.name}</td>
 
                   <td className="px-6 py-4">{user.email}</td>
 

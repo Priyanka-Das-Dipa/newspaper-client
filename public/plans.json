@@ -1,0 +1,32 @@
+[
+    {
+      "title": "Premium Individual",
+      "price": 9.99,
+      "description": [
+        "Enjoy exclusive access to premium content.",
+        "Ad-free experience for your favorite shows and music.",
+        "High-quality streaming for an immersive entertainment experience."
+      ],
+      "status": "Try Free For One Month"
+    },
+    {
+      "title": "Premium Duo",
+      "price": 12.99,
+      "description": [
+        "Share the premium experience with a loved one.",
+        "Individual accounts with personalized playlists.",
+        "Simultaneous streaming on multiple devices."
+      ],
+      "status": "Get Premium Duo"
+    },
+    {
+      "title": "Premium Family",
+      "price": 14.99,
+      "description": [
+        "Perfect for the whole family with individual accounts.",
+        "Parental controls to manage content access.",
+        "Create and share playlists for family bonding."
+      ],
+      "status": "Get Premium Family"
+    }
+  ]

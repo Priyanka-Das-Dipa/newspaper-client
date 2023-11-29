@@ -3,8 +3,8 @@ import faq from "../../../../public/images/faq.jpg";
 const Faq = () => {
   return (
     <>
-      <div className="min-h-screen">
-        <h2 className="text-4xl font-semibold text-center text-black mb-5">
+      <div className="py-10">
+        <h2 className="text-4xl font-semibold text-center text-black mb-14">
           FAQ
         </h2>
         <div className="md:flex md:flex-row  sm:flex-col gap-10 justify-between mt-10">

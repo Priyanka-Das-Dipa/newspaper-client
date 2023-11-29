@@ -10,6 +10,8 @@ const UserAllArticle = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { user } = useContext(AuthContext);
 
+  console.log(user);
+
   if (loading) {
     return <p>Loading</p>;
   }
@@ -88,7 +90,7 @@ const UserAllArticle = () => {
                 <div className="flex items-center gap-4">
                   <img
                     className="w-10 h-10 rounded-full"
-                    src={user.photoUrl}
+                    src={user?.photoURL}
                     alt=""
                   />
                   <div className="font-medium dark:text-white">

@@ -33,6 +33,7 @@ const AllUsers = () => {
         });
       }
     });
+    console.log(user);
   };
 
   return (

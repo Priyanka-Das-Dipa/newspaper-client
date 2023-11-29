@@ -7,6 +7,7 @@ import useAdmin from "../../hooks/useAdmin";
 
 const Navigation = () => {
   const { user, logOut } = useContext(AuthContext);
+
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -30,7 +31,7 @@ const Navigation = () => {
                 arrowIcon={false}
                 inline
                 label={
-                  <Avatar alt="User settings" img={user?.imageUrl} rounded />
+                  <Avatar alt="User settings" img={user?.imageURL} rounded />
                 }
               >
                 <Dropdown.Header>

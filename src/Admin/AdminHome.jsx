@@ -9,7 +9,7 @@ const AdminHome = () => {
         <>
           <ul className="menu my-5 mb-10 text-xl font-semibold space-y-4 ">
             <li className="hover:underline">
-              <NavLink to="/dashboard/adminHome" className="flex items-center gap-2">
+              <NavLink to="/dashboard" className="flex items-center gap-2">
                 <FaHome></FaHome> Admin Home
               </NavLink>
             </li>

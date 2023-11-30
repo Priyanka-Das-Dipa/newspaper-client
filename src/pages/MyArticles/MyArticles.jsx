@@ -1,16 +1,44 @@
 import { Button } from "flowbite-react";
 import useArticles from "../../hooks/useArticles";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyArticles = () => {
   const [articles, loading] = useArticles([]);
+  const axiosSecure = useAxiosSecure();
   console.log(articles);
+
+
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/allArticles/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
   if (loading) {
     return <p>Loading</p>;
   }
 
   if (!Array.isArray(articles)) {
-    // Handle the case where articles is not an array
     return <p>Error: Articles is not an array</p>;
   }
 
@@ -62,14 +90,13 @@ const MyArticles = () => {
                   <Button>Update</Button>
                 </td>
                 <td className="px-6 py-4">
-                  <Button>Delete</Button>
+                  <Button onClick={() => handleDelete(item._id)}>Delete</Button>
                 </td>
                 <td className="px-6 py-4"></td>
               </tr>
             ))}
           </tbody>
         </table>
-        
       </div>
     </div>
   );

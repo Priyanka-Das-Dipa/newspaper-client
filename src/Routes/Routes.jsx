@@ -16,6 +16,7 @@ import DashDesign from "../Admin/DashDesign";
 import UserProfile from "../pages/Home/UserProfile/UserProfile";
 import Subscription from "../pages/Subscription/Subscription";
 import Payment from "../pages/Payment/Payment";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +38,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "addArticle",
-        element: <AddArticles></AddArticles>,
+        element: <PrivateRoute><AddArticles></AddArticles></PrivateRoute>,
       },
       {
         path: "userAllArticle",
@@ -50,7 +51,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "subscription",
-        element: <Subscription></Subscription>
+        element: <PrivateRoute><Subscription></Subscription></PrivateRoute>
       },
       {
         path: "payment",
@@ -58,17 +59,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "myArticle",
-        element: <MyArticles></MyArticles>
+        element: <PrivateRoute><MyArticles></MyArticles></PrivateRoute>
       },
       {
         path: "userProfile",
-        element: <UserProfile></UserProfile>
+        element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
       }
     ],
   },
   {
     path: "dashboard",
-    element: <DashBoard></DashBoard>,
+    element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
     children: [
       {
         path: "/dashboard",

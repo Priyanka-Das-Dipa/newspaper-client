@@ -17,18 +17,12 @@ const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
 
+  const from = location.state?.from?.pathname || "/";
+  console.log("state in the location login page", location.state);
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
-
-  const handleCaptcha = (e) => {
-    const user_captcha_value = e.target.value;
-    if (validateCaptcha(user_captcha_value)) {
-      setDisabled(false);
-    } else {
-      setDisabled(false);
-    }
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,9 +42,20 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate(location?.state ? location.state : "/");
+      navigate(from, { replace: true });
     });
   };
+
+  const handleCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
+    if (validateCaptcha(user_captcha_value)) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  };
+  
+
   return (
     <div className=" mx-auto items-center flex ">
       <div className="w-1/2">

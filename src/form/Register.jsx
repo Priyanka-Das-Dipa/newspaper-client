@@ -25,7 +25,7 @@ const Register = () => {
       (result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-gi
+
 
         handleUpdateProfile(data.first_name, data.img).then(() => {
           const userInfo = {

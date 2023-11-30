@@ -17,8 +17,8 @@ const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
 
-  const from = location.state?.from?.pathname || "/";
-  console.log("state in the location login page", location.state);
+  // const from = location.state?.from?.pathname || "/";
+  // console.log("state in the location login page", location.state);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -34,6 +34,7 @@ const Login = () => {
 
     signIn(email, password).then((result) => {
       const user = result.user;
+      navigate(location?.state ? location.state : "/");
       console.log(user);
       Swal.fire({
         position: "top-center",
@@ -42,7 +43,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate(from, { replace: true });
+      // navigate(from, { replace: true });
     });
   };
 

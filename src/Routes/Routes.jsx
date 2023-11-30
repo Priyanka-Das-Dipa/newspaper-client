@@ -17,6 +17,7 @@ import UserProfile from "../pages/Home/UserProfile/UserProfile";
 import Subscription from "../pages/Subscription/Subscription";
 import Payment from "../pages/Payment/Payment";
 import PrivateRoute from "./PrivateRoute";
+import Premium from "../pages/Home/Premium/Premium";
 
 export const router = createBrowserRouter([
   {
@@ -42,7 +43,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "userAllArticle",
-        element: <UserAllArticle></UserAllArticle>,
+        element: <PrivateRoute><UserAllArticle></UserAllArticle>
+        </PrivateRoute>,
         
       },
       {
@@ -56,6 +58,10 @@ export const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment>
+      },
+      {
+        path: "premium",
+        element: <Premium></Premium>
       },
       {
         path: "myArticle",
@@ -78,7 +84,7 @@ export const router = createBrowserRouter([
       {
         path: "allArticle",
         element: <AllArticle></AllArticle>,
-        loader : () => fetch('http://localhost:5000/articleCount')
+        loader : () => fetch('https://newspaper-sever-site.vercel.app/articleCount')
       },
       {
         path: "allUsers",

@@ -5,8 +5,8 @@ const useArticles = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // const api = `http://localhost:5000/allArticles?page=${currentPage}&size=${itemsPerPage}`;
-    fetch("http://localhost:5000/allArticles")
+    // const api = `https://newspaper-sever-site.vercel.app/allArticles?page=${currentPage}&size=${itemsPerPage}`;
+    fetch("https://newspaper-sever-site.vercel.app/allArticles")
       .then((res) => res.json())
       .then((data) => {
         setArticles(data);

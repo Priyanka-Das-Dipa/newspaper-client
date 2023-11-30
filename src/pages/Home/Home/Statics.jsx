@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Chart } from "react-google-charts";
+import Chart from "react-google-charts";
 
-const PieChart = () => {
+const Statics = () => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
@@ -29,33 +29,25 @@ const PieChart = () => {
   }, []);
 
   const chartOptions = {
-    colors: ["#4285F4", "#34A853", "#FBBC05"], // Set custom colors for each category
+    colors: ["#4285F4"], // Set custom colors for each category
   };
   return (
-    <div className="flex">
-      <div className="w-1/2">
-        <Chart
-          width={"100%"}
-          height={"400px"}
-          chartType="PieChart"
-          loader={<div>Loading Chart</div>}
-          data={chartData}
-          options={chartOptions}
-          rootProps={{ "data-testid": "1" }}
-        />
+    <div className="my-20">
+      <div>
+        <label className="w-64 mb-3 text-lg font-medium text-gray-900 dark:text-white">
+          All The Published Category Articles 
+        </label>
       </div>
-      <div className="w-1/2">
-        <Chart
-          width={"100%"}
-          height={"400px"}
-          chartType="BarChart"
-          loader={<div>Loading Chart</div>}
-          data={chartData}
-          options={chartOptions}
-        />
-      </div>
+      <Chart
+        width={"100%"}
+        height={"400px"}
+        chartType="BarChart"
+        loader={<div>Loading Chart</div>}
+        data={chartData}
+        options={chartOptions}
+      />
     </div>
   );
 };
 
-export default PieChart;
+export default Statics;

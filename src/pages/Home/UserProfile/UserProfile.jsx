@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
+import useAdmin from "../../../hooks/useAdmin";
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
+  const [isAdmin] = useAdmin();
   return (
     <div className="min-h-screen ">
       <h1 className="text-2xl font-semibold text-black text-center my-5">
@@ -22,7 +24,7 @@ const UserProfile = () => {
               {user?.displayName}
             </h5>
             <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">
-              Admin
+              {isAdmin ? "Admin" : "Regular User"}
             </span>
             <div className="flex mt-4 md:mt-6">
               <a

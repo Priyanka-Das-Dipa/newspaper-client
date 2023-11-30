@@ -7,7 +7,7 @@ const usePublisher = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/publisher')
+        fetch('https://newspaper-sever-site.vercel.app/publisher')
         .then(res => res.json())
         .then(data => {
             setPublisher(data);

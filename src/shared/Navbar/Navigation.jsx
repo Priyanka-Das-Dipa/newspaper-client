@@ -45,9 +45,13 @@ const Navigation = () => {
                 <Dropdown.Item>
                   <NavLink to="/userProfile">Profile</NavLink>
                 </Dropdown.Item>
-                <Dropdown.Item>
-                  <NavLink to="/dashboard">Dashboard</NavLink>
-                </Dropdown.Item>
+                {isAdmin ? (
+                  <Dropdown.Item>
+                    <NavLink to="/dashboard">Dashboard</NavLink>
+                  </Dropdown.Item>
+                ) : (
+                  ""
+                )}
                 <Dropdown.Divider />
                 <Dropdown.Item>
                   <Link onClick={handleLogOut}>Sign out</Link>
@@ -67,15 +71,22 @@ const Navigation = () => {
           <Navbar.Link>
             <NavLink to="/">Home</NavLink>
           </Navbar.Link>
-          <Navbar.Link>
-            <NavLink to="/addArticle">Add Articles</NavLink>
-          </Navbar.Link>
+          {user?.email && (
+            <Navbar.Link>
+              <NavLink to="/addArticle">Add Articles</NavLink>
+            </Navbar.Link>
+          )}
+
           <Navbar.Link>
             <NavLink to="/userAllArticle">All Articles</NavLink>
           </Navbar.Link>
-          <Navbar.Link>
-            <NavLink to="/subscription">Subscription</NavLink>
-          </Navbar.Link>
+
+          {user?.email && (
+            <Navbar.Link>
+              <NavLink to="/subscription">Subscription</NavLink>
+            </Navbar.Link>
+          )}
+
           {isAdmin ? (
             <Navbar.Link>
               <NavLink to="/dashboard">Dashboard</NavLink>
@@ -83,12 +94,16 @@ const Navigation = () => {
           ) : (
             ""
           )}
-          <Navbar.Link>
-            <NavLink to="/myArticle">My Articles</NavLink>
-          </Navbar.Link>
-          <Navbar.Link>
-            <NavLink to="/">Premium Articles</NavLink>
-          </Navbar.Link>
+          {user?.email && (
+            <Navbar.Link>
+              <NavLink to="/myArticle">My Articles</NavLink>
+            </Navbar.Link>
+          )}
+          {user?.email && (
+            <Navbar.Link>
+              <NavLink to="/premium">Premium Articles</NavLink>
+            </Navbar.Link>
+          )}
         </Navbar.Collapse>
       </Navbar>
     </div>

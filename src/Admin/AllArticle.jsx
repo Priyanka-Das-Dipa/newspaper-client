@@ -3,21 +3,24 @@ import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AllArticle = () => {
-  // const [articles, loading] = useArticles([]);
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(0);
   const { count } = useLoaderData();
-  const {user} = useContext(AuthContext)
+  const {user} = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+
   console.log(articles);
 
   const numOfPage = Math.ceil(count / itemsPerPage);
   const pages = [...Array(numOfPage).keys()];
   useEffect(() => {
-    const api = `http://localhost:5000/allArticles?page=${currentPage}&size=${itemsPerPage}`;
+    const api = `https://newspaper-sever-site.vercel.app/allArticles?page=${currentPage}&size=${itemsPerPage}`;
     fetch(api)
       .then((res) => res.json())
       .then((data) => {
@@ -44,6 +47,30 @@ const AllArticle = () => {
     if (currentPage < pages.length) {
       setCurrentPage(currentPage + 1);
     }
+  };
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/allArticles/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
   };
   return (
     <div>
@@ -87,9 +114,9 @@ const AllArticle = () => {
                   {/* <p className="text-black uppercase font-semibold">{item.date}</p> */}
                 </div>
                 <div className="flex gap-2">
-                  <Button className="btn btn-sm">Approve</Button>
+                  <Button>Approve</Button>
                   <Button>Decline</Button>
-                  <Button>Delete</Button>
+                  <Button onClick={() => handleDelete(item._id)}>Delete</Button>
                   <Button>Premium</Button>
                 </div>
               </div>

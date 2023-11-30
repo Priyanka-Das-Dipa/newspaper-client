@@ -6,7 +6,7 @@ const DetailsPage = () => {
   const [detailData, setDetailData] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allArticles/${id}`)
+    fetch(`https://newspaper-sever-site.vercel.app/allArticles/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setDetailData(data);
